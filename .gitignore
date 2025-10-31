@@ -1,0 +1,14 @@
+# Environment & sensitive files
+.env
+__pycache__/
+venv/
+*.pyc
+
+# Personal notes (do not push)
+notes.md
+appsec.md
+
+# System files
+.DS_Store
+.idea/
+.vscode/
