@@ -9,12 +9,12 @@ ALGORITHM = settings.ALGORITHM
 ACCESS_TOKEN_EXPIRE_MINUTES = settings.ACCESS_TOKEN_EXPIRE_MINUTES
 OUATH2_SCHEME = OAuth2PasswordBearer(tokenurl="token")
 
-# create the token and copy the users data and set an expiration for token then update and encode jwt
-def create_access_token(data:str):
-    to_encode = data.copy() 
+# create the token copy the users data and set an expiration for token then update and encode secret key/jwt
+def create_access_token(data: str):
+    to_encode = data.copy()
     expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    to_encode.update({"exp":expire})
-    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    to_encode.update('exp',expire)
+    return jwt.encode(to_encode,SECRET_KEY, algorithm=ALGORITHM)
 
 # Verify the access token and raise errors if token expired
 def verify_token(token: str):
@@ -27,3 +27,6 @@ def verify_token(token: str):
             detail="Invalid or expired token",
             headers={"WWW-Authenticate": "Bearer"},
         )
+        
+
+    
